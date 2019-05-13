@@ -1,6 +1,10 @@
+export let boundaries = [];
+
 export class Boundary {
 
-    static boundaries = [];
+    static emptyBoundaries(){
+        boundaries = [];
+    }
 
     constructor(p1, p2, x2, y2) {
         if (x2 === undefined) {
@@ -20,7 +24,7 @@ export class Boundary {
         this.maxY = Math.max(this.p1.y, this.p2.y);
         this.minY = Math.min(this.p1.y, this.p2.y);
 
-        Boundary.boundaries.push(this);
+        boundaries.push(this);
     }
 
     show(canvas) {
