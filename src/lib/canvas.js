@@ -15,20 +15,34 @@ export class Canvas{
         this.ctx.strokeStyle = lineColor;
     }
 
-    drawLine(p1, p2) {
+    drawLine(p1, p2, p3, p4) {
         this.ctx.beginPath();
-        this.ctx.moveTo(p1.x, p1.y);
-        this.moveLine(p2);
+
+        if(p3 && p4){
+            this.ctx.moveTo(p1, p2);
+            this.moveLine(p3,p4);
+        }
+        else{
+            this.ctx.moveTo(p1.x, p1.y);
+            this.moveLine(p2);
+        }
+        
         this.ctx.stroke();
-        this.ctx.closePath();
     }
 
-    moveLine(point) {
-        this.ctx.lineTo(point.x, point.y);
+    moveLine(point, point2) {
+        if(point2){
+            this.ctx.lineTo(point, point2);
+        }
+        else{
+            this.ctx.lineTo(point.x, point.y);
+        }
     }
 
-    fillScreen(){
+    fillScreen(color){
+        this.ctx.fillStyle = color;
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.fillStyle = this.bgColor;
     }
 
     pointToWorld(p1,p2){

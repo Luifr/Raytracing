@@ -4,13 +4,23 @@
 
 <link rel="stylesheet" href="styles.css" >
 
-<div class="topnav">
-    <a class="active" >Raytracing!</a>
-    <div style="float: right">
-        <a >O botao esquerdo liga e desliga a luz</a>
-        <a >O botao direito cria paredes</a>
-        <a >O 'R' destroi todas as paredes</a>
-        <a >Autor: Lui</a>
+<div class="navbar">
+    <a href="#" style="background-color: #4CAF50" >Raytracing!</a>
+    <div style="float:  right" >
+
+        <a href="#">O botao esquerdo liga e desliga a luz</a>
+        <a href="#">O botao direito cria paredes</a>
+        <div class="dropdown">
+            <button class="dropbtn">Funcionalidades extras
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="#">O scroll do mouse mudam a quantidade de raios</a>
+                <a href="#">Q, E, A, D mudar a abertura dos raios</a>
+                <a href="#">R destroi todas as paredes</a>
+            </div>
+        </div>
+        <a href="#">Autor: Lui</a>
     </div>
 </div>
 
@@ -19,7 +29,7 @@
 </canvas>
 
 <script type="module" src="./src/raycast.js"></script>
-<!-- <script src="./dist/main.js"></script> -->
+<!-- <script src="./main.js"></script> -->
 
 </body>
 </html>

@@ -15,7 +15,7 @@ export class Ray {
 
         let p2 = new Vector2(this.p.x + Math.cos(this.dir), this.p.y - Math.sin(this.dir));
         let a = (this.p.y - p2.y) / (this.p.x - p2.x);
-        let b = a !== Infinity ? this.p.y - this.p.x * a : 0;
+        let b = Number.isFinite(a) ? this.p.y - this.p.x * a : this.p.x;
         let ocol = new Vector2(this.p.x + 10000 * Math.cos(this.dir), this.p.y - 10000 * Math.sin(this.dir));
         let col = new Vector2(ocol.x, ocol.y);
         let p;

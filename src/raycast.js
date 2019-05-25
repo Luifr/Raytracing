@@ -28,6 +28,130 @@ document.addEventListener("keypress", (e) => {
 			rayCastFromMouse(mousePos,true);
 		}
 	}
+	else if(e.key == "q"){
+		if(!reverse){
+			startAngle += angleDiff;
+			if(startAngle == endAngle){
+				startAngle +=angleDiff;
+			}
+		}
+		else{
+			endAngle += angleDiff;
+			if(startAngle == endAngle){
+				endAngle +=angleDiff;
+			}
+		}
+
+		console.log(startAngle, endAngle, reverse);
+		if(startAngle > endAngle && !reverse){
+			endAngle =  startAngle + angleDiff;
+			//endAngle += angleDiff;
+			reverse = true;
+		}
+		else if ((2*Math.PI)+startAngle < endAngle && reverse){
+			endAngle = startAngle + angleDiff;
+			//startAngle = endAngle + angleDiff;
+			reverse = false;
+		}
+
+		canvas.fillScreen();
+		if(mousePos !== null && raycast){
+			rayCastFromMouse(mousePos,true);
+		}
+	}
+	else if(e.key == "a"){
+		if(!reverse){
+			startAngle -= angleDiff;
+			if(startAngle == endAngle){
+				startAngle -=angleDiff;
+			}
+		}
+		else{
+			endAngle -= angleDiff;
+			if(startAngle == endAngle){
+				endAngle -=angleDiff;
+			}
+		}
+
+		console.log(startAngle, endAngle, reverse);
+		if(startAngle > endAngle && reverse){
+			endAngle =  startAngle + angleDiff;
+			//endAngle += angleDiff;
+			reverse = false;
+		}
+		else if ((2*Math.PI)+startAngle < endAngle && !reverse){
+			endAngle = startAngle + angleDiff;
+			//startAngle = endAngle + angleDiff;
+			reverse = true;
+		}
+
+		canvas.fillScreen();
+		if(mousePos !== null && raycast){
+			rayCastFromMouse(mousePos,true);
+		}
+	}
+	else if(e.key == "e"){
+		if(reverse){
+			startAngle -= angleDiff;
+			if(startAngle == endAngle){
+				startAngle -=angleDiff;
+			}
+		}
+		else{
+			endAngle -= angleDiff;
+			if(startAngle == endAngle){
+				endAngle -=angleDiff;
+			}
+		}
+
+		console.log(startAngle, endAngle, reverse);
+		if(startAngle > endAngle && !reverse){
+			startAngle =  endAngle - angleDiff;
+			//endAngle -= angleDiff;
+			reverse = true;
+		}
+		else if ((2*Math.PI)+startAngle < endAngle && reverse){
+			endAngle = startAngle + angleDiff;
+			//startAngle = endAngle - angleDiff;
+			reverse = false;
+		}
+
+		canvas.fillScreen();
+		if(mousePos !== null && raycast){
+			rayCastFromMouse(mousePos,true);
+		}
+	}
+	else if(e.key == "d"){
+		if(reverse){
+			startAngle += angleDiff;
+			if(startAngle == endAngle){
+				startAngle +=angleDiff;
+			}
+		}
+		else{
+			endAngle += angleDiff;
+			if(startAngle == endAngle){
+				endAngle +=angleDiff;
+			}
+		}
+
+		console.log(startAngle, endAngle, reverse);
+		if(startAngle > endAngle && reverse){
+			startAngle =  endAngle - angleDiff;
+			//endAngle -= angleDiff;
+			reverse = false;
+		}
+		else if ((2*Math.PI)+startAngle < endAngle && !reverse){
+			endAngle = startAngle + angleDiff;
+			//startAngle = endAngle - angleDiff;
+			reverse = true;
+		}
+
+		canvas.fillScreen();
+		if(mousePos !== null && raycast){
+			rayCastFromMouse(mousePos,true);
+		}
+	}
 });
 document.addEventListener("wheel", (event) => {
 	if(!raycast)
@@ -43,12 +167,16 @@ document.oncontextmenu = function () {
 }
 ////////////////////////////////////////////////////////////////////////
 
-var canvas = new Canvas();
+let canvas = new Canvas();
 
 let firstBoundaryPoint = null;
 let raycast = true;
 let mousePos = null;
 let numberOfRays = 40;
+let startAngle = 0;
+let endAngle = 2*Math.PI
+let angleDiff = 0.1;
+let reverse = false;
 
 function instantiateBoundary(event){
 	let mousePosition = canvas.pointToWorld(event);
@@ -104,7 +232,7 @@ function rayCastFromMouse(event, pointTransformed=false) {
 		b.show(canvas);
 	}
 
-	for (let i = 0; i < 2 * Math.PI; i += 1/numberOfRays) {
+	for (let i = startAngle; i < endAngle; i += 1/numberOfRays) {
 		let ray = new Ray(mousePosition, i);
 		ray.show(canvas, boundaries);
 	}
